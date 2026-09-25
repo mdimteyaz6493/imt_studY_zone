@@ -7,7 +7,6 @@ const Question = require("../models/Question");
 
 const questionsBySubject = require("./questions");
 
-
 const seedQuestions = async () => {
   try {
     await connectDB();
@@ -17,7 +16,6 @@ const seedQuestions = async () => {
     let totalInserted = 0;
 
     for (const [slug, questions] of Object.entries(questionsBySubject)) {
-
       if (!questions || questions.length === 0) {
         console.log(`⚠️ ${slug}: No questions found`);
         continue;
@@ -39,9 +37,22 @@ const seedQuestions = async () => {
 
       const questionsWithSubject = questions.map((question) => ({
         ...question,
+
+        // Connect question with Subject
         subject: subject._id,
+
+        // Default active status
         isActive: true,
-        tags: [slug, "interview"]
+
+        // Preserve question tags and add subject slug
+        tags: [
+          slug,
+          ...(Array.isArray(question.tags) ? question.tags : [])
+        ],
+
+        // Default values for older questions
+        practiceType: question.practiceType || "interview",
+        setNumber: question.setNumber || 1
       }));
 
       await Question.insertMany(questionsWithSubject);
@@ -61,9 +72,7 @@ const seedQuestions = async () => {
     await mongoose.connection.close();
 
     process.exit(0);
-
   } catch (error) {
-
     console.error("Question seed error:", error.message);
 
     await mongoose.connection.close();
@@ -71,6 +80,5 @@ const seedQuestions = async () => {
     process.exit(1);
   }
 };
-
 
 seedQuestions();

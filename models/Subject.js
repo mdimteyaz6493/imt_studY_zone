@@ -21,6 +21,19 @@ const subjectSchema = new mongoose.Schema(
       default: ""
     },
 
+    category: {
+      type: String,
+      enum: [
+        "technical",
+        "reasoning",
+        "quantitative",
+        "english",
+        "general-awareness",
+        "computer-awareness"
+      ],
+      required: true
+    },
+
     icon: {
       type: String,
       default: "📚"

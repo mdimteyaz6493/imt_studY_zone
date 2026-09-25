@@ -25,6 +25,10 @@ const questionSchema = new mongoose.Schema(
       }
     },
 
+    // 0 = A
+    // 1 = B
+    // 2 = C
+    // 3 = D
     correctAnswer: {
       type: Number,
       required: true,
@@ -46,6 +50,25 @@ const questionSchema = new mongoose.Schema(
     topic: {
       type: String,
       default: ""
+    },
+
+    // interview / practice-set / mock-test / topic-practice
+    practiceType: {
+      type: String,
+      enum: [
+        "interview",
+        "practice-set",
+        "mock-test",
+        "topic-practice"
+      ],
+      default: "interview"
+    },
+
+    // Useful for Practice Set 1, Set 2, Set 3...
+    setNumber: {
+      type: Number,
+      default: 1,
+      min: 1
     },
 
     tags: {

@@ -1,5 +1,5 @@
 const pythonQuestions = require("./python");
-const sqlQuestions  = require("./sql")
+const sqlQuestions = require("./sql");
 const cQuestions = require("./c");
 const cssQuestions = require("./css");
 const dataAnalyticsQuestions = require("./data-analytics");
@@ -17,14 +17,17 @@ const reactQuestions = require("./react");
 const powerBIQuestions = require("./power-bi");
 const operatingSystemQuestions = require("./operating-system");
 const dbmsQuestions = require("./dbms");
+// Competitive Practice
+const reasoningQuestions = require("./reasoning");
+
 
 module.exports = {
   python: pythonQuestions,
-  sql:sqlQuestions,
+  sql: sqlQuestions,
   c: cQuestions,
   css: cssQuestions,
   "data-analytics": dataAnalyticsQuestions,
-   excel: excelQuestions,
+  excel: excelQuestions,
   "git-github": gitGithubQuestions,
   "hr-interview": hrInterviewQuestions,
   cpp: cppQuestions,
@@ -38,4 +41,6 @@ module.exports = {
   "power-bi": powerBIQuestions,
   "operating-system": operatingSystemQuestions,
   dbms: dbmsQuestions,
+  // Competitive Practice
+  reasoning: reasoningQuestions
 };
